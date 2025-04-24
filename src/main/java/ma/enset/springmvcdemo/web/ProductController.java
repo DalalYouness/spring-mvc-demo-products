@@ -7,6 +7,7 @@ import ma.enset.springmvcdemo.repository.IProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -25,4 +26,13 @@ public class ProductController {
         model.addAttribute("list_products",products);
         return "listproducts";
     }
+
+    @GetMapping("/deleteProduct")
+    public String deleteProduct(@RequestParam(name = "ID") long id)
+    {
+        productRepository.deleteById(id);
+        return "redirect:/index";
+    }
+
+
 }
